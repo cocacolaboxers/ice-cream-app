@@ -8,17 +8,19 @@ const OrderSchema = new mongoose.Schema ({
         required: true
     },
     price: {
-        type: Number
+        type: mongoose.Decimal128,
+        required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
     paymentMethod: {
         type: String,
-        enum: ['Efectivo', 'Tarjeta'], default: 'Tarjeta'
+        enum: ['Efectivo', 'Tarjeta'], default: 'Tarjeta',
+        required: true
     },
     payed: {
-        tyoe: Boolean,
+        type: Boolean,
         default: false
     }
 })
