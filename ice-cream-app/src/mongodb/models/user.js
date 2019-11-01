@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-const connectionSTRING = 'mongodb://127.0.0.1:27017/ice-cream'
-
-mongoose.connect(connectionSTRING, { useNewUrlParser: true, useCreateIndex: true })
-
 const User = mongoose.model('User', {
     name: {
         type: String,
@@ -13,7 +9,7 @@ const User = mongoose.model('User', {
     email: {
         type: String,
         required: true,
-        trime: true,
+        trim: true,
         lowercase: true,
         validate(value){
             if(!validator.isEmail(value)){
@@ -27,14 +23,4 @@ const User = mongoose.model('User', {
     }
 })
 
-const me = new User({
-    name: 'Jose',
-    email: 'tomasdiaz898hotmail.com',
-    password: '1234'
-})
-
-me.save().then(() => {
-    console.log(me)
-}).catch((error) => {
-    console.log('Error', error)
-})
+module.exports = User
