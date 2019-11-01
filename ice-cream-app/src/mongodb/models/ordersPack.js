@@ -3,7 +3,7 @@ const validator = require('validator')
 require('./user')
 require('./order')
 
-const OrderPack = mongoose.model('OrderPack', {
+const OrderPackSchema = mongoose.Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User',
         required: true
@@ -21,4 +21,5 @@ const OrderPack = mongoose.model('OrderPack', {
     }
 })
 
+const OrderPack = mongoose.model('OrderPack', OrderPackSchema)
 module.exports = OrderPack

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+require('./order')
 
 const UserSchema = new mongoose.Schema ({
     name: {
@@ -20,7 +21,13 @@ const UserSchema = new mongoose.Schema ({
     password: {
         type: String,
         required: true
-    }
+    },
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Order'
+    }],
+    packs: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'OrderPack'
+    }],
 })
 
 const User = mongoose.model('User', UserSchema)

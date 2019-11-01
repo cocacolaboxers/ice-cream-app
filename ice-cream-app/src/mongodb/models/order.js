@@ -8,8 +8,7 @@ const OrderSchema = new mongoose.Schema ({
         required: true
     },
     price: {
-        //type: Number, //Fix this
-        //required: true
+        type: Number
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
