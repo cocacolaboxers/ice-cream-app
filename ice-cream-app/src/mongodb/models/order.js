@@ -1,7 +1,11 @@
+//.js file to provide the moongose schema and model that will be later
+//used by the routers. This one corresponds to the order and its attributes
+
 const mongoose = require('mongoose')
 const validator = require('validator')
 require('./user')
 
+//Define the schema
 const OrderSchema = new mongoose.Schema ({
     description: {
         type: String,
@@ -25,5 +29,8 @@ const OrderSchema = new mongoose.Schema ({
     }
 })
 
+//Define the model
 const Order = mongoose.model('Order', OrderSchema)
+
+//Export the model
 module.exports = Order

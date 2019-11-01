@@ -1,8 +1,12 @@
+//.js file to provide the moongose schema and model that will be later
+//used by the routers.This one corresponds to the order and its attributes
+
 const mongoose = require('mongoose')
 const validator = require('validator')
 require('./order')
 require('./ordersPack')
 
+//Define the schema
 const UserSchema = new mongoose.Schema ({
     name: {
         type: String,
@@ -32,7 +36,9 @@ const UserSchema = new mongoose.Schema ({
     }],
 })
 
-//
+//This method was created as part of the logging in logic, it checks
+//if there is a user in the database whose email matches the input and then
+//verifies the password. It returns the user if it can be logged in. 
 UserSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({ email })
 
@@ -48,5 +54,8 @@ UserSchema.statics.findByCredentials = async (email, password) => {
     return user
 }
 
+//Create the model
 const User = mongoose.model('User', UserSchema)
+
+//Export the model
 module.exports = User
