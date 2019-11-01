@@ -3,6 +3,10 @@ require('./user')
 require('./order')
 
 const OrderPackSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
     creator: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User',
         required: true
@@ -11,8 +15,8 @@ const OrderPackSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Order'
     }],
     expirationDate: {
-        type: Date
-        //required: true
+        type: Date,
+        required: false
     },
     creationDate: {
         type: Date,
@@ -20,5 +24,5 @@ const OrderPackSchema = mongoose.Schema({
     }
 })
 
-const OrderPack = mongoose.model('OrdersPack', OrderPackSchema)
-module.exports = OrderPack
+const OrdersPack = mongoose.model('OrdersPack', OrderPackSchema)
+module.exports = OrdersPack

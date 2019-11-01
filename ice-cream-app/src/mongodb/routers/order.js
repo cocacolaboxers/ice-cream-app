@@ -32,6 +32,21 @@ router.get('/orders/:id', (req,res) => {
     })
 })
 
+router.patch('/orders/:id', async (req,res) => {
+    try{
+        const order = await Order.findByIdAndUpdate(req.params.id, 
+            req.body, {new: true, runValidators: true})
+        
+        if(!order){
+            return res.status(404).send()
+        }
+
+        res.send(order)
+    } catch(e) {
+    res.status(500).send(e)
+}
+})
+
 router.delete('/orders/:id', (req,res) => {
     const _id = req.params.id
     Order.findByIdAndDelete(_id).then((order) => {
