@@ -8,8 +8,8 @@ const OrderSchema = new mongoose.Schema ({
         required: true
     },
     price: {
-        type: double,
-        required: true
+        //type: Number, //Fix this
+        //required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
@@ -24,5 +24,5 @@ const OrderSchema = new mongoose.Schema ({
     }
 })
 
-const Order = mongoose.model('Order', UserSchema)
+const Order = mongoose.model('Order', OrderSchema)
 module.exports = Order

@@ -1,6 +1,8 @@
 const express = require('express')
 require('./mongodb/mongoose')
 const User = require('./mongodb/models/user')
+const Order = require('./mongodb/models/order')
+
 
 const app = express()
 const port = 3000
@@ -12,6 +14,16 @@ app.post('/users', (req,res) => {
 
     user.save().then(() => {
         res.send(user)
+    }).catch((e) => {
+        res.status(400).send(e)
+    })
+})
+
+app.post('/orders', (req,res) => {
+    const order = new Order(req.body)
+
+    order.save().then(() => {
+        res.send(order)
     }).catch((e) => {
         res.status(400).send(e)
     })
